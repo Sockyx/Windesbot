@@ -9,6 +9,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * Command for deauthorisation
+ * Example: w!unauthorise <role> <command>
+ *
+ * @author Lucas Ouwens
+ */
 public class UnauthoriseCommand implements CommandExecutionTemplate {
 
     @Override

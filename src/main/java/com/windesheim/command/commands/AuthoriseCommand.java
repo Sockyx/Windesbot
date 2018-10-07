@@ -9,6 +9,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * Command for authorisation
+ * Example: w!authorise <role> <command>
+ *
+ * @author Lucas Ouwens
+ */
 public class AuthoriseCommand implements CommandExecutionTemplate {
 
     @Override

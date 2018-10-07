@@ -80,7 +80,7 @@ public class Windesbot {
     /**
      * Anonymous inner class for throwing an exception if the bot instance wasn't created, yet being accessed.
      */
-    private static class NoBotInstanceException extends Exception {
+    public static class NoBotInstanceException extends Exception {
         NoBotInstanceException(String message) {
             super(message);
         }
