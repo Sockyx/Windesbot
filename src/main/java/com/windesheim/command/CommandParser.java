@@ -39,9 +39,13 @@ public class CommandParser {
         if(arguments != null) {
             CommandExecutionTemplate botCommandExecutor = CommandRegister.getRegister().getCommandExecutionTemplate(command);
             if (botCommandExecutor != null) {
-                return botCommandExecutor.execute(new Command(receivedMessage, command, arguments));
+                 if(botCommandExecutor.execute(new Command(receivedMessage, command, arguments))) {
+                     receivedMessage.addReaction("\u2705").queue();
+                     return true;
+                 }
             }
         }
+        receivedMessage.addReaction("\u26D4").queue();
         return false;
     }
 

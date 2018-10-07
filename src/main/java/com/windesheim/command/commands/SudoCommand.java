@@ -18,10 +18,10 @@ public class SudoCommand implements CommandExecutionTemplate {
                 messageToSend.append(argument).append(" ");
             }
             messageToSend.trimToSize();
-            botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append(messageToSend.toString()).build()).submit();
+            botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append(messageToSend.toString()).build()).queue();
             return true;
         } else {
-            botCommand.getCommandMessage().getTextChannel().sendMessage("Please provide arguments, " + botCommand.getCommandMessage().getAuthor().getName() + "!").submit();
+            botCommand.getCommandMessage().getTextChannel().sendMessage("Please provide arguments, " + botCommand.getCommandMessage().getAuthor().getName() + "!").queue();
         }
 
         return false;

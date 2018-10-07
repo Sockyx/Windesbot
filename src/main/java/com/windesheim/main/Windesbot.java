@@ -34,12 +34,11 @@ public class Windesbot {
         this.windesBot = new JDABuilder(token)
                 .addEventListener(new CommandListener())
                 .setStatus(OnlineStatus.ONLINE)
-                .setGame(Game.of(Game.GameType.LISTENING, " to ASMR"))
+                .setGame(Game.of(Game.GameType.WATCHING, " dank memes"))
                 .build();
 
 
         windesBot.awaitReady();
-        System.out.println("[db] Discord bot now online.");
     }
 
     /**
