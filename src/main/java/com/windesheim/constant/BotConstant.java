@@ -10,7 +10,7 @@ public class BotConstant {
     /**
      * A string which contains the bot token for the Windesbot
      */
-    public static final String discordBotToken = "NDk4MTc1NTY2MDkyOTU5NzQ1.DpqZJQ.Sz8pyEYgebXMjrcUB7PD58p33Ek";
+    public static final String discordBotToken = "<Token_redacted>";
 
     /**
      * Permission level for the bot, used for administrative commands.
