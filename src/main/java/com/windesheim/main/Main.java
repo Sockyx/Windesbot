@@ -6,7 +6,10 @@ import com.windesheim.command.commands.SudoCommand;
 import com.windesheim.command.commands.UnauthoriseCommand;
 import com.windesheim.constant.BotConstant;
 import com.windesheim.database.Database;
+import com.windesheim.webuntis.ScheduleJSONParser;
 import com.windesheim.webuntis.ScheduleRetriever;
+import com.windesheim.webuntis.calendar.CalendarItem;
+import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Guild;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -14,13 +17,15 @@ import org.json.JSONTokener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -69,6 +74,28 @@ public class Main {
                         JSONTokener tokener = new JSONTokener(JSON.trim());
                         JSONObject object = new JSONObject(tokener);
 
+                        ScheduleJSONParser.getParser().parse(object.getJSONArray("data"));
+
+                        CalendarItem firstLesson = ScheduleJSONParser.getParser().retrieveCalendarItems().get(0);
+
+                        if(firstLesson != null) {
+                            Date currentTime = new Date(System.currentTimeMillis());
+                            Date t = new Date(firstLesson.getStartTime());
+                            Date t2 = new Date(firstLesson.getEndTime());
+
+                            if (t.getDate() == currentTime.getDate()) {
+                                if (t.getYear() == currentTime.getYear()) {
+                                    if (t.getDay() == currentTime.getDay()) {
+                                        mentionGuild.getTextChannelById(498176239874342946L)
+                                                .sendMessage(new MessageBuilder().append("The first lesson of the day starts at ")
+                                                        .append(t.getHours()).append(":").append(t.getMinutes())
+                                                        .append(" - ").append(t2.getHours()).append(":").append(t2.getMinutes()).build()).queue();
+
+                                    }
+                                }
+                            }
+                        }
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -91,17 +118,27 @@ public class Main {
                             StringBuilder sb = new StringBuilder();
                             ScheduleRetriever retriever = ScheduleRetriever.getInstance();
                             try(BufferedReader reader = new BufferedReader(retriever.getScheduleByClass(untisGroup))) {
-                                String readLine = "";
+                                String readLine;
                                 while((readLine = reader.readLine()) != null) {
-                                    System.out.println(readLine);
+                                    sb.append(readLine);
                                 }
+
+                                sb.append("}");
+                                String JSON = "{ \"data\":" + sb.toString().trim();
+                                JSONTokener tokener = new JSONTokener(JSON.trim());
+                                JSONObject object = new JSONObject(tokener);
+
+                                ScheduleJSONParser.getParser().parse(object.getJSONArray("data"));
+                                for(CalendarItem item : ScheduleJSONParser.getParser().retrieveCalendarItems()) {
+                                    Arrays.stream(item.getTeachers()).forEach((e) -> System.out.println(e.getName()));
+                                }
+
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                         }
                     }
                 }
-
             } catch (SQLException | Windesbot.NoBotInstanceException e) {
                 e.printStackTrace();
             }
