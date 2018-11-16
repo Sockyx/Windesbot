@@ -10,7 +10,7 @@ import java.util.concurrent.ScheduledExecutorService;
  *
  * @author Lucas Ouwens
  */
-public class ScheduleManager  {
+public class ScheduleManager {
 
     private ArrayList<Schedulable> scheduledFutures;
 
@@ -24,10 +24,11 @@ public class ScheduleManager  {
 
     /**
      * ScheduleManager instance
+     *
      * @return ScheduleManager
      */
     public static ScheduleManager getManagerInstance() {
-        if(schedulerManagerInstance == null) {
+        if (schedulerManagerInstance == null) {
             schedulerManagerInstance = new ScheduleManager();
         }
 
@@ -36,12 +37,12 @@ public class ScheduleManager  {
 
     /**
      * Get the scheduled actions
+     *
      * @return ArrayList containing Schedulable objects (implements the interface)
      */
     public synchronized ArrayList<Schedulable> getScheduled() {
-        return  scheduledFutures;
+        return scheduledFutures;
     }
-
 
 
 }

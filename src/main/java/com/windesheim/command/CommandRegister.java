@@ -22,10 +22,11 @@ public class CommandRegister {
 
     /**
      * Get access to the register through an instance
+     *
      * @return CommandRegister
      */
     public static CommandRegister getRegister() {
-        if(commandRegisterInstance == null) {
+        if (commandRegisterInstance == null) {
             commandRegisterInstance = new CommandRegister();
         }
 
@@ -34,6 +35,7 @@ public class CommandRegister {
 
     /**
      * Get the execution template for a specific command
+     *
      * @param command String the command to be searched for
      * @return CommandExecutionTemplate
      */
@@ -43,7 +45,8 @@ public class CommandRegister {
 
     /**
      * Register a new Command Execution Template to register a new command.
-     * @param command String
+     *
+     * @param command           String
      * @param executionTemplate CommandExecutionTemplate
      */
     public void registerCommandExecutionTemplate(String command, CommandExecutionTemplate executionTemplate) {

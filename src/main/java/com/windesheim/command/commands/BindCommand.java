@@ -19,11 +19,11 @@ public class BindCommand implements CommandExecutionTemplate {
     @Override
     public boolean execute(Command botCommand) {
         String[] args = botCommand.getArguments();
-        if(args.length >= 2) {
+        if (args.length >= 2) {
             String role = args[0];
             String binding = args[1];
-            if(botCommand.getCommandMessage().getGuild().getRoles().stream().anyMatch(r -> r.getName().equalsIgnoreCase(role))) {
-                try(Connection con = Database.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement("INSERT INTO role_bindings (server_id, role, untis_group) VALUES (?, ?, ?);")) {
+            if (botCommand.getCommandMessage().getGuild().getRoles().stream().anyMatch(r -> r.getName().equalsIgnoreCase(role))) {
+                try (Connection con = Database.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement("INSERT INTO role_bindings (server_id, role, untis_group) VALUES (?, ?, ?);")) {
                     ps.setLong(1, Long.parseLong(botCommand.getCommandMessage().getGuild().getId()));
                     ps.setString(2, role);
                     ps.setString(3, binding);

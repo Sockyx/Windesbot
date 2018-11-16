@@ -12,9 +12,9 @@ import net.dv8tion.jda.core.MessageBuilder;
 public class SudoCommand implements CommandExecutionTemplate {
 
     public boolean execute(Command botCommand) {
-        if(!(botCommand.getArguments().length == 0)) {
+        if (!(botCommand.getArguments().length == 0)) {
             StringBuilder messageToSend = new StringBuilder();
-            for(String argument : botCommand.getArguments()) {
+            for (String argument : botCommand.getArguments()) {
                 messageToSend.append(argument).append(" ");
             }
             messageToSend.trimToSize();

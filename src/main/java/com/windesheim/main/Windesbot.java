@@ -31,6 +31,7 @@ public class Windesbot {
 
     /**
      * Constructor for the Windesbot, no public constructor to dissuade people from creating an instance outside of this class.
+     *
      * @param token String the discord bot token.
      * @throws LoginException thrown upon failing to login.
      */
@@ -48,17 +49,18 @@ public class Windesbot {
 
     /**
      * Try creating an instance to the Windesbot.
+     *
      * @param token String the given token for the bot
      * @return Windesbot the bot wrapper around the JDA object.
      */
     public static Windesbot createBotInstance(String token) {
         try {
-            if(windesbotObjectInstance == null) {
+            if (windesbotObjectInstance == null) {
                 windesbotObjectInstance = new Windesbot(token);
             }
 
             return windesbotObjectInstance;
-        } catch(LoginException | InterruptedException e) {
+        } catch (LoginException | InterruptedException e) {
             // TODO logger
         }
         return null;
@@ -66,11 +68,13 @@ public class Windesbot {
 
     /**
      * Access the instance.
-     * @throws NoBotInstanceException thrown upon trying to access an instance before there being one.
+     *
      * @return Windesbot The bot object wrapper.
+     * @throws NoBotInstanceException thrown upon trying to access an instance before there being one.
      */
     public static Windesbot getBotInstance() throws NoBotInstanceException {
-        if(windesbotObjectInstance == null) throw new NoBotInstanceException("Unable to access bot, instance was not created. See Windesbot.createBotInstance(String token)");
+        if (windesbotObjectInstance == null)
+            throw new NoBotInstanceException("Unable to access bot, instance was not created. See Windesbot.createBotInstance(String token)");
         return windesbotObjectInstance;
     }
 

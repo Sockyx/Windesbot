@@ -22,10 +22,10 @@ public class UnauthoriseCommand implements CommandExecutionTemplate {
     @Override
     public boolean execute(Command botCommand) {
         String[] args = botCommand.getArguments();
-        if(args.length >= 2) {
+        if (args.length >= 2) {
             String role = args[0];
             String command = args[1];
-            if(botCommand.getCommandMessage().getGuild().getRoles().stream().anyMatch(r -> r.getName().equalsIgnoreCase(role))) {
+            if (botCommand.getCommandMessage().getGuild().getRoles().stream().anyMatch(r -> r.getName().equalsIgnoreCase(role))) {
                 try (Connection con = Database.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement("DELETE FROM Authorisation WHERE server_id = ? AND role = ? AND command = ?")) {
                     ps.setLong(1, Long.parseLong(botCommand.getCommandMessage().getGuild().getId()));
                     ps.setString(2, role);
@@ -33,7 +33,7 @@ public class UnauthoriseCommand implements CommandExecutionTemplate {
 
                     // executeUpdate returns rows affected.
                     int executed = ps.executeUpdate();
-                    if(executed>0) {
+                    if (executed > 0) {
                         botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append(String.format("The role %s is now no longer authorised to use the command %s", role, command)).build()).queue();
                         return true;
                     } else {

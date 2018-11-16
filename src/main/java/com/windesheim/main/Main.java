@@ -15,6 +15,7 @@ public class Main {
 
     /**
      * Main method, initialises the application
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -26,6 +27,7 @@ public class Main {
 
     /**
      * Instance to the windesbot wrapper
+     *
      * @return Windesbot
      */
     public static Windesbot getWindesbotWrapper() {

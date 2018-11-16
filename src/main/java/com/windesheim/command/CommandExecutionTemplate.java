@@ -9,6 +9,7 @@ public interface CommandExecutionTemplate {
 
     /**
      * Method for the command execution of a command
+     *
      * @param botCommand Command object
      * @return boolean
      */

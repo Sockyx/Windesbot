@@ -19,6 +19,7 @@ public class Command {
 
     /**
      * The message object, usable for things like checking reactions.
+     *
      * @return Message
      */
     public Message getCommandMessage() {
@@ -27,6 +28,7 @@ public class Command {
 
     /**
      * The command the user is trying to execute
+     *
      * @return String
      */
     public String getCommandName() {
@@ -35,6 +37,7 @@ public class Command {
 
     /**
      * The arguments the user has specified
+     *
      * @return String[]
      */
     public String[] getArguments() {

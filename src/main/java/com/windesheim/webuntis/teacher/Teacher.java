@@ -29,7 +29,7 @@ public class Teacher {
 
     public static Teacher[] multipleFromJSONArray(JSONArray teachers) {
         Teacher[] oTeachers = new Teacher[teachers.length()];
-        for(int i = 0; i < teachers.length(); i++) {
+        for (int i = 0; i < teachers.length(); i++) {
             oTeachers[i] = Teacher._new(null, teachers.get(i).toString());
         }
 

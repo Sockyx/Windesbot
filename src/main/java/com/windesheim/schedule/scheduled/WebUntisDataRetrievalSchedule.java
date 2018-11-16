@@ -34,24 +34,24 @@ public class WebUntisDataRetrievalSchedule implements Schedulable {
     public void schedule() {
         ScheduleManager.scheduler.scheduleWithFixedDelay(() -> {
             // Fetch data we need for the role bindings
-            try(Connection con = Database.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement("SELECT server_id, role, untis_group FROM role_bindings")) {
+            try (Connection con = Database.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement("SELECT server_id, role, untis_group FROM role_bindings")) {
                 // loop through the resultset
                 ResultSet rs = ps.executeQuery();
-                while(rs.next()) {
+                while (rs.next()) {
                     String role = rs.getString("role");
                     String untisGroup = rs.getString("untis_group");
                     Guild mentionGuild = Windesbot.getBotInstance().getWindesBot().getGuildById(rs.getLong("server_id"));
                     // check if the guild isn't null and there's a match for the role in the role list
-                    if(mentionGuild != null) {
-                        if(mentionGuild.getRoles().stream().anyMatch(r -> r.getName().equalsIgnoreCase(role))) {
+                    if (mentionGuild != null) {
+                        if (mentionGuild.getRoles().stream().anyMatch(r -> r.getName().equalsIgnoreCase(role))) {
                             // retrieve the schedules
                             StringBuilder sb = new StringBuilder();
                             ScheduleRetriever retriever = ScheduleRetriever.getInstance();
-                            try(BufferedReader reader = new BufferedReader(retriever.getScheduleByClass(untisGroup))) {
+                            try (BufferedReader reader = new BufferedReader(retriever.getScheduleByClass(untisGroup))) {
 
                                 // write read json data to stringbuilder
                                 String readLine;
-                                while((readLine = reader.readLine()) != null) {
+                                while ((readLine = reader.readLine()) != null) {
                                     sb.append(readLine);
                                 }
 

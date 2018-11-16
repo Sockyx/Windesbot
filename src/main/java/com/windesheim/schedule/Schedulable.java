@@ -2,9 +2,9 @@ package com.windesheim.schedule;
 
 /**
  * Interface for registering schedulable data.
- * @see ScheduleManager for uses.
  *
  * @author Lucas Ouwens
+ * @see ScheduleManager for uses.
  */
 public interface Schedulable {
 

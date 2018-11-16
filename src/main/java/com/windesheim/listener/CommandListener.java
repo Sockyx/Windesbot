@@ -24,13 +24,14 @@ public class CommandListener extends ListenerAdapter {
 
     /**
      * Handle messages received with the command prefix.
+     *
      * @param event MessageReceivedEvent
      */
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        if(event.getMessage().getContentRaw().toLowerCase().startsWith(BotConstant.windesbotCommandPrefix.toLowerCase())) {
-            if(event.getChannelType() == ChannelType.TEXT) {
-                if(!(event.getMember().isOwner())) {
+        if (event.getMessage().getContentRaw().toLowerCase().startsWith(BotConstant.windesbotCommandPrefix.toLowerCase())) {
+            if (event.getChannelType() == ChannelType.TEXT) {
+                if (!(event.getMember().isOwner())) {
                     try {
                         PreparedStatement ps = Database.getInstance().getConnection().prepareStatement("SELECT role FROM Authorisation WHERE server_id = ? AND command = ?");
                         ps.setLong(1, Long.parseLong(event.getGuild().getId()));

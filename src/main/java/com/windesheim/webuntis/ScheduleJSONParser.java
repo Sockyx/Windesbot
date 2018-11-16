@@ -30,6 +30,7 @@ public class ScheduleJSONParser {
 
     /**
      * ScheduleJSONParser instance
+     *
      * @return ScheduleJSONParser
      */
     public static ScheduleJSONParser getParser() {
@@ -42,6 +43,7 @@ public class ScheduleJSONParser {
 
     /**
      * Parse the CalendarItem JSON retrieved from untis
+     *
      * @param arr JSONArray the retrieved data
      * @return ScheduleJSONParser
      */
@@ -87,6 +89,7 @@ public class ScheduleJSONParser {
 
     /**
      * The calendar items
+     *
      * @return ArrayList
      */
     public ArrayList<CalendarItem> retrieveCalendarItems() {

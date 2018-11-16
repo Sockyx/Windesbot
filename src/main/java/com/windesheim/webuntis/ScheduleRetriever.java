@@ -13,7 +13,7 @@ public class ScheduleRetriever {
     private static ScheduleRetriever instance = null;
 
     public static ScheduleRetriever getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new ScheduleRetriever();
         }
 

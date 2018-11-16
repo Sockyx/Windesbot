@@ -21,7 +21,7 @@ public class Team {
 
     public static Team[] multipleFromArray(String[] teams) {
         Team[] oTeams = new Team[teams.length];
-        for(int i = 0; i < teams.length; i++) {
+        for (int i = 0; i < teams.length; i++) {
             oTeams[i] = Team._new(teams[i]);
         }
 

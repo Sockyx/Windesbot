@@ -34,7 +34,7 @@ public class Database {
         databaseConfig.setUsername(DatabaseConstant.databaseUsername);
         databaseConfig.setPassword(DatabaseConstant.databasePassword);
 
-        databaseConfig.addDataSourceProperty("useSSL",false);
+        databaseConfig.addDataSourceProperty("useSSL", false);
 
         databaseConfig.addDataSourceProperty("cachePrepStmts", DatabaseConstant.cachePrepareStatements);
         databaseConfig.addDataSourceProperty("prepStmtCacheSize", DatabaseConstant.cachePrepareStatementSize);
@@ -50,7 +50,7 @@ public class Database {
     }
 
     public static Database getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new Database();
         }
 

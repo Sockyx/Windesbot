@@ -15,7 +15,7 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 /**
  * Initialise every class here
- *
+ * <p>
  * This class listens to the bot being ready for usage
  *
  * @author Lucas Ouwens
