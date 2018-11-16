@@ -1,6 +1,8 @@
 package com.windesheim.database;
 
 import com.windesheim.constant.DatabaseConstant;
+import com.windesheim.logging.Logger;
+import com.windesheim.logging.MessageType;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -39,6 +41,8 @@ public class Database {
         databaseConfig.addDataSourceProperty("prepStmtCacheSqlLimit", DatabaseConstant.prepareStatementSQLLimit);
 
         databaseSource = new HikariDataSource(databaseConfig);
+
+        Logger.log("The database connection has been initialised", MessageType.INFO);
     }
 
     public Connection getConnection() throws SQLException {
@@ -54,7 +58,9 @@ public class Database {
     }
 
     public void close() {
+        Logger.log("Closing the database connection...", MessageType.INFO);
         databaseSource.close();
+        Logger.log("Database connection has been closed.", MessageType.INFO);
     }
 
 

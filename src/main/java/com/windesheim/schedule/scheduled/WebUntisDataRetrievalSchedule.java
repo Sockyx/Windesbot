@@ -70,6 +70,7 @@ public class WebUntisDataRetrievalSchedule implements Schedulable {
 
                                 // Add the scheduled action to the manager
                                 ScheduleManager.getManagerInstance().getScheduled().add(notifySchedule);
+                                Logger.log("Calender item data has been retrieved.", MessageType.INFO);
                             } catch (IOException e) {
                                 Logger.log(e.getMessage(), MessageType.ERROR);
                             }

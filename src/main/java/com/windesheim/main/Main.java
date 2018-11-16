@@ -1,6 +1,8 @@
 package com.windesheim.main;
 
 import com.windesheim.constant.BotConstant;
+import com.windesheim.logging.Logger;
+import com.windesheim.logging.MessageType;
 
 /**
  * Main class for initializing the bot.
@@ -16,7 +18,9 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
+        Logger.log("Starting up the bot..", MessageType.ALL);
         windesbotWrapper = Windesbot.createBotInstance(BotConstant.discordBotToken);
+        Logger.log("Bot has been initialised.", MessageType.ALL);
     }
 
 

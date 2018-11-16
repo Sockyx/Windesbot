@@ -1,5 +1,7 @@
 package com.windesheim.webuntis;
 
+import com.windesheim.logging.Logger;
+import com.windesheim.logging.MessageType;
 import com.windesheim.webuntis.calendar.CalendarItem;
 import com.windesheim.webuntis.subject.Subject;
 import com.windesheim.webuntis.teacher.Teacher;
@@ -45,7 +47,7 @@ public class ScheduleJSONParser {
      */
     public ScheduleJSONParser parse(JSONArray arr) {
         calendarItems.clear(); // clear before getting new data
-
+        Logger.log("Retrieving new calendar items...", MessageType.INFO);
         // loop through the json objects
         for (int i = 0; i < arr.length(); i++) {
             JSONObject calendarJSONItem = arr.getJSONObject(i);
@@ -55,7 +57,7 @@ public class ScheduleJSONParser {
 
                 // Only add the calendar item to the arraylist when the class occurs today, it is otherwise unnecessary data.
                 if (Timestamp.valueOf(LocalDate.now().atStartOfDay()).getTime() <= (calendarJSONItem.getLong("starttijd") - 7200000)
-                        && Timestamp.valueOf(LocalDate.now().plusDays(4).atStartOfDay()).getTime() >= (calendarJSONItem.getLong("starttijd") - 7200000)) {
+                        && Timestamp.valueOf(LocalDate.now().plusDays(1).atStartOfDay()).getTime() >= (calendarJSONItem.getLong("starttijd") - 7200000)) {
                     calendarItem
                             .setSubject(
                                     Subject._new(
@@ -79,6 +81,7 @@ public class ScheduleJSONParser {
 
             }
         }
+        Logger.log("Calendar items have been retrieved.", MessageType.INFO);
         return this;
     }
 

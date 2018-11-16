@@ -5,6 +5,8 @@ import com.windesheim.command.commands.AuthoriseCommand;
 import com.windesheim.command.commands.SudoCommand;
 import com.windesheim.command.commands.UnauthoriseCommand;
 
+import com.windesheim.logging.Logger;
+import com.windesheim.logging.MessageType;
 import com.windesheim.schedule.Schedulable;
 import com.windesheim.schedule.ScheduleManager;
 import com.windesheim.schedule.scheduled.WebUntisDataRetrievalSchedule;
@@ -27,10 +29,15 @@ public class BotStartupListener extends ListenerAdapter {
         CommandRegister.getRegister().registerCommandExecutionTemplate("authorise", new AuthoriseCommand());
         CommandRegister.getRegister().registerCommandExecutionTemplate("unauthorise", new UnauthoriseCommand());
 
+        Logger.log("Commands have been registered", MessageType.INFO);
+
         // Register the scheduled data retrieval from webuntis.
         ScheduleManager.getManagerInstance().getScheduled().add(new WebUntisDataRetrievalSchedule());
 
         // Start the schedules
         ScheduleManager.getManagerInstance().getScheduled().forEach(Schedulable::schedule);
+
+        Logger.log("Schedulers have been enabled.", MessageType.INFO);
+
     }
 }
