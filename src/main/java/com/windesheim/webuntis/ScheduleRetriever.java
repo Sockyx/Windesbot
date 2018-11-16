@@ -5,6 +5,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * @author Lucas Ouwens
+ */
 public class ScheduleRetriever {
 
     private static ScheduleRetriever instance = null;

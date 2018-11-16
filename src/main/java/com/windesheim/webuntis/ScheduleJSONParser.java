@@ -7,8 +7,15 @@ import com.windesheim.webuntis.team.Team;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * JSON parser for a very specific purpose
+ *
+ * @author Lucas Ouwens
+ */
 public class ScheduleJSONParser {
 
     private static ScheduleJSONParser jsonParser = null;
@@ -19,46 +26,66 @@ public class ScheduleJSONParser {
         calendarItems = new ArrayList<>();
     }
 
+    /**
+     * ScheduleJSONParser instance
+     * @return ScheduleJSONParser
+     */
     public static ScheduleJSONParser getParser() {
-        if(jsonParser == null) {
+        if (jsonParser == null) {
             jsonParser = new ScheduleJSONParser();
         }
 
         return jsonParser;
     }
 
+    /**
+     * Parse the CalendarItem JSON retrieved from untis
+     * @param arr JSONArray the retrieved data
+     * @return ScheduleJSONParser
+     */
     public ScheduleJSONParser parse(JSONArray arr) {
         calendarItems.clear(); // clear before getting new data
-        for(int i = 0; i < arr.length(); i++) {
+
+        // loop through the json objects
+        for (int i = 0; i < arr.length(); i++) {
             JSONObject calendarJSONItem = arr.getJSONObject(i);
-            if(calendarJSONItem != null) {
+            // make sure that the calendar json item isn't null and build a calendar item from it.
+            if (calendarJSONItem != null) {
                 CalendarItem calendarItem = new CalendarItem(calendarJSONItem.getString("id"));
 
-                // very long builder method :)
-                calendarItem
-                        .setSubject(
-                                Subject._new(
-                                        calendarJSONItem.getString("vakcode"),
-                                        calendarJSONItem.getString("vaknaam")
-                                )
-                        )
-                        .setChanged(calendarJSONItem.getBoolean("changed"))
-                        .setStartTime(calendarJSONItem.getLong("starttijd") - 7200000) // remove 2 hours for accuracy
-                        .setEndTime(calendarJSONItem.getLong("eindtijd") - 7200000)
-                        .setNote(calendarJSONItem.getString("commentaar"))
-                        .setRoom(calendarJSONItem.getString("lokaal"))
-                        .setScheduleDate(calendarJSONItem.getString("roosterdatum"))
-                        .setStatus(calendarJSONItem.getBoolean("status"))
-                        .setTeams(Team.multipleFromArray(calendarJSONItem.getString("groepcode").split(", ")))
-                        .setTeachers(Teacher.multipleFromJSONArray(calendarJSONItem.getJSONArray("docentnamen")));
+                // Only add the calendar item to the arraylist when the class occurs today, it is otherwise unnecessary data.
+                if (Timestamp.valueOf(LocalDate.now().atStartOfDay()).getTime() <= (calendarJSONItem.getLong("starttijd") - 7200000)
+                        && Timestamp.valueOf(LocalDate.now().plusDays(4).atStartOfDay()).getTime() >= (calendarJSONItem.getLong("starttijd") - 7200000)) {
+                    calendarItem
+                            .setSubject(
+                                    Subject._new(
+                                            calendarJSONItem.getString("vakcode"),
+                                            calendarJSONItem.getString("vaknaam")
+                                    )
+                            )
+                            .setChanged(calendarJSONItem.getBoolean("changed"))
+                            .setStartTime(calendarJSONItem.getLong("starttijd") - 7200000) // remove 2 hours for accuracy
+                            .setEndTime(calendarJSONItem.getLong("eindtijd") - 7200000)
+                            .setNote(calendarJSONItem.getString("commentaar"))
+                            .setRoom(calendarJSONItem.getString("lokaal"))
+                            .setScheduleDate(calendarJSONItem.getString("roosterdatum"))
+                            .setStatus(calendarJSONItem.getBoolean("status"))
+                            .setTeams(Team.multipleFromArray(calendarJSONItem.getString("groepcode").split(", ")))
+                            .setTeachers(Teacher.multipleFromJSONArray(calendarJSONItem.getJSONArray("docentnamen")));
 
-                calendarItems.add(calendarItem);
+                    // add the calendar item to the arraylist.
+                    calendarItems.add(calendarItem);
+                }
 
             }
         }
         return this;
     }
 
+    /**
+     * The calendar items
+     * @return ArrayList
+     */
     public ArrayList<CalendarItem> retrieveCalendarItems() {
         return calendarItems;
     }

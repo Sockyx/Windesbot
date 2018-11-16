@@ -2,6 +2,9 @@ package com.windesheim.webuntis.teacher;
 
 import org.json.JSONArray;
 
+/**
+ * @author Lucas Ouwens
+ */
 public class Teacher {
 
     private String teacherCode;

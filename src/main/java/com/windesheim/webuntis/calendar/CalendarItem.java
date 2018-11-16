@@ -4,6 +4,10 @@ import com.windesheim.webuntis.subject.Subject;
 import com.windesheim.webuntis.teacher.Teacher;
 import com.windesheim.webuntis.team.Team;
 
+/**
+ *
+ * @author Lucas Ouwens
+ */
 public class CalendarItem {
 
     // item

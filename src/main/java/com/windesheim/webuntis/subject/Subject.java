@@ -1,5 +1,8 @@
 package com.windesheim.webuntis.subject;
 
+/**
+ * @author Lucas Ouwens
+ */
 public class Subject {
 
     private String subjectCode;

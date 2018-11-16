@@ -2,6 +2,9 @@ package com.windesheim.command;
 
 import net.dv8tion.jda.core.entities.Message;
 
+/**
+ * @author Lucas Ouwens
+ */
 public class Command {
 
     private Message commandMessage;

@@ -3,6 +3,8 @@ package com.windesheim.listener;
 import com.windesheim.command.CommandParser;
 import com.windesheim.constant.BotConstant;
 import com.windesheim.database.Database;
+import com.windesheim.logging.Logger;
+import com.windesheim.logging.MessageType;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.Role;
@@ -55,7 +57,7 @@ public class CommandListener extends ListenerAdapter {
                                     .queue();
                         }
                     } catch (SQLException e) {
-                        e.printStackTrace();
+                        Logger.log(e.getMessage(), MessageType.ERROR);
                     }
                 } else {
                     CommandParser.getBotCommandParser().parseCommand(event.getMessage());

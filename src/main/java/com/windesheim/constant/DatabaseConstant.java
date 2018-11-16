@@ -12,8 +12,8 @@ public class DatabaseConstant {
 
     public static final String databaseType = "mysql";
 
-    public static final String databaseUsername = "<username>";
-    public static final String databasePassword = "<password>";
+    public static final String databaseUsername = "root";
+    public static final String databasePassword = "";
 
     public static final String databaseName = "windesbot";
 

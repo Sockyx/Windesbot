@@ -1,6 +1,10 @@
 package com.windesheim.main;
 
+import com.windesheim.listener.BotStartupListener;
 import com.windesheim.listener.CommandListener;
+import com.windesheim.schedule.Schedulable;
+import com.windesheim.schedule.ScheduleManager;
+import com.windesheim.schedule.scheduled.WebUntisDataRetrievalSchedule;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
@@ -33,11 +37,12 @@ public class Windesbot {
     private Windesbot(String token) throws LoginException, InterruptedException {
         this.windesBot = new JDABuilder(token)
                 .addEventListener(new CommandListener())
+                .addEventListener(new BotStartupListener())
                 .setStatus(OnlineStatus.ONLINE)
                 .setGame(Game.of(Game.GameType.WATCHING, " dank memes"))
                 .build();
 
-
+        // wait for the bot to be ready.
         windesBot.awaitReady();
     }
 
@@ -48,12 +53,11 @@ public class Windesbot {
      */
     public static Windesbot createBotInstance(String token) {
         try {
-            if(!(windesbotObjectInstance == null)) {
-                return windesbotObjectInstance;
-            } else {
-                return new Windesbot(token);
+            if(windesbotObjectInstance == null) {
+                windesbotObjectInstance = new Windesbot(token);
             }
 
+            return windesbotObjectInstance;
         } catch(LoginException | InterruptedException e) {
             // TODO logger
         }

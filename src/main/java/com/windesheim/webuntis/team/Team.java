@@ -1,5 +1,8 @@
 package com.windesheim.webuntis.team;
 
+/**
+ * @author Lucas Ouwens
+ */
 public class Team {
 
     private String name;

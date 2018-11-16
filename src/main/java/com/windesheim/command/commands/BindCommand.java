@@ -3,11 +3,17 @@ package com.windesheim.command.commands;
 import com.windesheim.command.Command;
 import com.windesheim.command.CommandExecutionTemplate;
 import com.windesheim.database.Database;
+import com.windesheim.logging.Logger;
+import com.windesheim.logging.MessageType;
+import net.dv8tion.jda.core.entities.Message;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * @author Lucas Ouwens
+ */
 public class BindCommand implements CommandExecutionTemplate {
 
     @Override
@@ -24,12 +30,10 @@ public class BindCommand implements CommandExecutionTemplate {
 
                     int rowsAffected = ps.executeUpdate();
 
-                    if(rowsAffected>0) {
-                        // Inserted.
-                    }
+                    return rowsAffected > 0;
 
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    Logger.log(e.getMessage(), MessageType.ERROR);
                 }
             }
         }

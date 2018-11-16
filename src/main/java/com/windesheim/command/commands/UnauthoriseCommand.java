@@ -3,6 +3,8 @@ package com.windesheim.command.commands;
 import com.windesheim.command.Command;
 import com.windesheim.command.CommandExecutionTemplate;
 import com.windesheim.database.Database;
+import com.windesheim.logging.Logger;
+import com.windesheim.logging.MessageType;
 import net.dv8tion.jda.core.MessageBuilder;
 
 import java.sql.Connection;
@@ -38,7 +40,7 @@ public class UnauthoriseCommand implements CommandExecutionTemplate {
                         botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append("There was no authorisation present for this role.").build()).queue();
                     }
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    Logger.log(e.getMessage(), MessageType.ERROR);
                 }
             } else {
                 botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append(String.format("Could not find a role with the name %s", role)).build()).queue();
