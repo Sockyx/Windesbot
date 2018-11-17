@@ -1,9 +1,7 @@
 package com.windesheim.listener;
 
 import com.windesheim.command.CommandRegister;
-import com.windesheim.command.commands.AuthoriseCommand;
-import com.windesheim.command.commands.SudoCommand;
-import com.windesheim.command.commands.UnauthoriseCommand;
+import com.windesheim.command.commands.*;
 
 import com.windesheim.logging.Logger;
 import com.windesheim.logging.MessageType;
@@ -28,6 +26,8 @@ public class BotStartupListener extends ListenerAdapter {
         CommandRegister.getRegister().registerCommandExecutionTemplate("sudo", new SudoCommand());
         CommandRegister.getRegister().registerCommandExecutionTemplate("authorise", new AuthoriseCommand());
         CommandRegister.getRegister().registerCommandExecutionTemplate("unauthorise", new UnauthoriseCommand());
+        CommandRegister.getRegister().registerCommandExecutionTemplate("bind", new BindCommand());
+        CommandRegister.getRegister().registerCommandExecutionTemplate("help", new HelpCommand());
 
         Logger.log("Commands have been registered", MessageType.INFO);
 

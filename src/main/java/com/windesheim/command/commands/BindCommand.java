@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
+ * Bind a role to an untis group.
+ *
  * @author Lucas Ouwens
  */
 public class BindCommand implements CommandExecutionTemplate {
