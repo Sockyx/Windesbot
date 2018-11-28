@@ -34,19 +34,19 @@ public class UnauthoriseCommand implements CommandExecutionTemplate {
                     // executeUpdate returns rows affected.
                     int executed = ps.executeUpdate();
                     if (executed > 0) {
-                        botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append(String.format("The role %s is now no longer authorised to use the command %s", role, command)).build()).queue();
+                        botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append(String.format("De rol %s is nu niet meer geautoriseerd om de volgende commando te gebruiken: %s", role, command)).build()).queue();
                         return true;
                     } else {
-                        botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append("There was no authorisation present for this role.").build()).queue();
+                        botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append("Er is geen autorisatie voor deze rol aanwezig.").build()).queue();
                     }
                 } catch (SQLException e) {
                     Logger.log(e.getMessage(), MessageType.ERROR);
                 }
             } else {
-                botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append(String.format("Could not find a role with the name %s", role)).build()).queue();
+                botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append(String.format("Kon de rol met de naam %s niet vinden.", role)).build()).queue();
             }
         } else {
-            botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append("Please use the command as follows: w!unauthorise <role> <command>").build()).queue();
+            botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append("Gebruik het commando als volgt: w!unauthorise <rol> <commando>").build()).queue();
         }
 
         return false;

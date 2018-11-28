@@ -24,7 +24,7 @@ public class HelpCommand implements CommandExecutionTemplate {
         builder.addField("Binden", "w!bind <role> <untis_group> - Verbindt een rol met een untis groep.\r\nVoorbeeld: w!bind ICTm1s3 ICTM1s", false);
 
         builder.addField("Binnenkort..", "w!unbind <role> - Haal alle bindingen van een rol af." +
-                "\r\nw!ubind <user> <webuntis_group> - Verbind een gebruiker aan een webuntis groep.\r\n" +
+                "\r\nw!UbindCommand <user> <webuntis_group> - Verbind een gebruiker aan een webuntis groep.\r\n" +
                 "w!unubind <user> - Ontbind een gebruiker van een untis groep", false);
 
         builder.setThumbnail("https://www.captise.nl/Portals/1/EasyDNNNews/151/600600p509EDNmain151windesheim_300x300.png");

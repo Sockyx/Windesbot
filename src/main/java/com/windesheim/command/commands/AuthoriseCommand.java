@@ -34,19 +34,19 @@ public class AuthoriseCommand implements CommandExecutionTemplate {
                     // executeUpdate returns rows affected.
                     int executed = ps.executeUpdate();
                     if (executed > 0) {
-                        botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append(String.format("The role %s is now authorised to use the command %s", role, command)).build()).queue();
+                        botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append(String.format("De rol %s is nu geautoriseerd om de volgende command te gebruiken: %s", role, command)).build()).queue();
                         return true;
                     } else {
-                        botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append("Please contact the developer, querying the database has failed.").build()).queue();
+                        botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append("Neem AUB contact op met de ontwikkelaar, er is iets misgegaan.").build()).queue();
                     }
                 } catch (SQLException e) {
                     Logger.log(e.getMessage(), MessageType.ERROR);
                 }
             } else {
-                botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append(String.format("Could not find a role with the name %s", role)).build()).queue();
+                botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append(String.format("Kon geen rol vinden met de naam \"%s\"", role)).build()).queue();
             }
         } else {
-            botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append("Please use the command as follows: w!authorise <role> <command>").build()).queue();
+            botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append("Gebruik het commando als volgt: w!authorise <rol> <commando>").build()).queue();
         }
 
         return false;

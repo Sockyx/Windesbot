@@ -21,7 +21,7 @@ public class SudoCommand implements CommandExecutionTemplate {
             botCommand.getCommandMessage().getTextChannel().sendMessage(new MessageBuilder().append(messageToSend.toString()).build()).queue();
             return true;
         } else {
-            botCommand.getCommandMessage().getTextChannel().sendMessage("Please provide arguments, " + botCommand.getCommandMessage().getAuthor().getName() + "!").queue();
+            botCommand.getCommandMessage().getTextChannel().sendMessage("Geef alstublieft argumenten op, " + botCommand.getCommandMessage().getAuthor().getName() + "!").queue();
         }
 
         return false;
