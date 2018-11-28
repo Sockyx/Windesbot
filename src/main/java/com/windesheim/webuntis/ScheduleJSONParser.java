@@ -68,8 +68,8 @@ public class ScheduleJSONParser {
                                     )
                             )
                             .setChanged(calendarJSONItem.getBoolean("changed"))
-                            .setStartTime(calendarJSONItem.getLong("starttijd") - 7200000) // remove 2 hours for accuracy
-                            .setEndTime(calendarJSONItem.getLong("eindtijd") - 7200000)
+                            .setStartTime(calendarJSONItem.getLong("starttijd") - 3600000) // remove 2 hours for accuracy
+                            .setEndTime(calendarJSONItem.getLong("eindtijd") - 3600000)
                             .setNote(calendarJSONItem.getString("commentaar"))
                             .setRoom(calendarJSONItem.getString("lokaal"))
                             .setScheduleDate(calendarJSONItem.getString("roosterdatum"))
