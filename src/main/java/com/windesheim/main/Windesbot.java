@@ -1,5 +1,6 @@
 package com.windesheim.main;
 
+import com.windesheim.constant.BotConstant;
 import com.windesheim.listener.BotStartupListener;
 import com.windesheim.listener.CommandListener;
 import com.windesheim.schedule.Schedulable;
@@ -39,8 +40,8 @@ public class Windesbot {
         this.windesBot = new JDABuilder(token)
                 .addEventListener(new CommandListener())
                 .addEventListener(new BotStartupListener())
-                .setStatus(OnlineStatus.ONLINE)
-                .setGame(Game.of(Game.GameType.WATCHING, " dank memes"))
+                .setStatus(OnlineStatus.DO_NOT_DISTURB)
+                .setGame(Game.of(Game.GameType.STREAMING, " Gebruik " + BotConstant.windesbotCommandPrefix + "help om te starten"))
                 .build();
 
         // wait for the bot to be ready.
