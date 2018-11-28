@@ -1,5 +1,8 @@
 package com.windesheim.logging;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Basic logger for messages.
  *
@@ -13,7 +16,7 @@ public class Logger {
 
     public static void log(String message, MessageType type) {
         if (minimalLogLevel.ID >= type.ID) {
-            System.out.println(PREFIX + " " + type.TEXT + ": " + message);
+            System.out.println("[" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("d-M-u H:m:s")) + "]" + PREFIX + " " + type.TEXT + ": " + message);
         }
     }
 
