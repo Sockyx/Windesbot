@@ -80,7 +80,7 @@ public class WebUntisDataRetrievalSchedule implements Schedulable {
             } catch (SQLException | Windesbot.NoBotInstanceException e) {
                 Logger.log(e.getMessage(), MessageType.ERROR);
             }
-        }, 0, LocalDateTime.now().until(LocalDate.now().plusDays(1).atStartOfDay(), ChronoUnit.MINUTES), TimeUnit.MINUTES);
+        }, 1, LocalDateTime.now().until(LocalDate.now().plusDays(1).atStartOfDay(), ChronoUnit.MINUTES), TimeUnit.MINUTES);
     }
 
 }

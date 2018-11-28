@@ -108,10 +108,10 @@ public class NextClassNotifySchedule implements Schedulable {
                     }
 
                 }
-            },  System.currentTimeMillis() -
+            },
                     ScheduleJSONParser.getParser().retrieveCalendarItems().get(
                             todaysClassCount.addAndGet(1)
-                    ).getStartTime() - 750000, TimeUnit.MILLISECONDS);
+                    ).getStartTime() - System.currentTimeMillis() - 750000, TimeUnit.MILLISECONDS);
         }
     }
 }
