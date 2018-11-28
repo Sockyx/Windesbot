@@ -61,7 +61,6 @@ public class NextClassNotifySchedule implements Schedulable {
                     EmbedBuilder embed = new EmbedBuilder();
                     embed.setTitle(item.getSubject().getName(), "https://liveadminwindesheim.sharepoint.com/sites/wip/pages/activities.aspx");
                     embed.setDescription((item.getNote().length() > 0 ? item.getNote() : ""));
-//                    embed.addBlankField(false);
                     embed.addField("Klas:", teams.toString(), true);
                     embed.addField("Docent(en):", (item.getTeachers().length > 0) ? docenten.toString() : "Geen.", true);
                     embed.addField("Van - tot:", start + " - " + end, true);
@@ -109,7 +108,10 @@ public class NextClassNotifySchedule implements Schedulable {
                     }
 
                 }
-            }, 1000, TimeUnit.MILLISECONDS);
+            },  System.currentTimeMillis() -
+                    ScheduleJSONParser.getParser().retrieveCalendarItems().get(
+                            todaysClassCount.addAndGet(1)
+                    ).getStartTime() - 750000, TimeUnit.MILLISECONDS);
         }
     }
 }
