@@ -54,7 +54,7 @@ public class CommandListener extends ListenerAdapter {
                             CommandParser.getBotCommandParser().parseCommand(event.getMessage());
                         } else {
                             event.getJDA().getTextChannelById(event.getTextChannel().getId())
-                                    .sendMessage(new MessageBuilder("Je bent niet geauthoriseerd om dit commando uit te voeren").build())
+                                    .sendMessage(new MessageBuilder("Je bent niet geautoriseerd om dit commando uit te voeren").build())
                                     .queue();
                         }
                     } catch (SQLException e) {
@@ -65,7 +65,7 @@ public class CommandListener extends ListenerAdapter {
                 }
             } else {
                 event.getJDA().getPrivateChannelById(event.getPrivateChannel().getId())
-                        .sendMessage(new MessageBuilder("Hallo, neem contact op via de discord server, niet hier!").build())
+                        .sendMessage(new MessageBuilder("Deze discord bot is alleen bruikbaar via de bestemde discord").build())
                         .queue();
             }
         }

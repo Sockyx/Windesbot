@@ -27,6 +27,9 @@ public class BotStartupListener extends ListenerAdapter {
         CommandRegister.getRegister().registerCommandExecutionTemplate("authorise", new AuthoriseCommand());
         CommandRegister.getRegister().registerCommandExecutionTemplate("unauthorise", new UnauthoriseCommand());
         CommandRegister.getRegister().registerCommandExecutionTemplate("bind", new BindCommand());
+        CommandRegister.getRegister().registerCommandExecutionTemplate("unbind", new UnbindCommand());
+        CommandRegister.getRegister().registerCommandExecutionTemplate("ubind", new UbindCommand());
+        CommandRegister.getRegister().registerCommandExecutionTemplate("unubind", new UnubindCommand());
         CommandRegister.getRegister().registerCommandExecutionTemplate("help", new HelpCommand());
 
         Logger.log("Commands have been registered", MessageType.INFO);
