@@ -42,6 +42,7 @@ public class Windesbot {
                 .addEventListener(new BotStartupListener())
                 .setStatus(OnlineStatus.DO_NOT_DISTURB)
                 .setGame(Game.of(Game.GameType.STREAMING, " Gebruik " + BotConstant.windesbotCommandPrefix + "help om te starten"))
+                .setAutoReconnect(true)
                 .build();
 
         // wait for the bot to be ready.
