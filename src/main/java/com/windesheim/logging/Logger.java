@@ -15,7 +15,7 @@ public class Logger {
 
 
     public static void log(String message, MessageType type) {
-        if (minimalLogLevel.ID >= type.ID) {
+        if (minimalLogLevel.ID <= type.ID) {
             System.out.println("[" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("d-M-u H:m:s")) + "]" + PREFIX + " " + type.TEXT + ": " + message);
         }
     }
